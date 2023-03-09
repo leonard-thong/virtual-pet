@@ -1,6 +1,9 @@
 const express = require('express')
+const cors = require('cors')
+
 const app = express()
 const port = 3000
+app.use(cors())
 
 level = 1
 tasks = [{id: 1, title: "Take a walk"}, {id: 2, title: "Water the flower"}, {id: 3, title: "Clean the dishes"}]
