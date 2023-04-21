@@ -143,7 +143,7 @@ app.delete('/delete-task/:id', async (req, res) => {
   tasks = tasks.filter(x => {return x.id != id})
   await collection.updateOne({}, { "$set": { "tasks": tasks } }, { upsert: true })
 
-  res.status(200).send('Task completed');
+  res.status(200).send('Task deleted');
 })
 
 // start the app
