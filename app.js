@@ -50,7 +50,7 @@ app.get('/tasks', async (req, res) => {
   let collection = await db.collection("clients")
   let result = await collection.find({}).toArray()
 
-  res.send({ "color": result[0]["tasks"] })
+  res.send({ "tasks": result[0]["tasks"] })
 })
 
 // get completed tasks
