@@ -129,6 +129,23 @@ app.delete('/tasks/:id', async (req, res) => {
   res.status(200).send('Task completed');
 })
 
+// delete (not complete) a task
+app.delete('/delete-task/:id', async (req, res) => {
+  id = parseInt(req.params.id)
+
+  let conn = await client.connect()
+  let db = await conn.db("client_0")
+  let collection = await db.collection("clients")
+
+  let result = await collection.find({}).toArray()
+  let tasks = result[0]["tasks"]
+
+  tasks = tasks.filter(x => {return x.id != id})
+  await collection.updateOne({}, { "$set": { "tasks": tasks } }, { upsert: true })
+
+  res.status(200).send('Task completed');
+})
+
 // start the app
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
