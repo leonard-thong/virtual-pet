@@ -91,7 +91,7 @@ app.post('/add-task', async (req, res) => {
     await collection.updateOne({}, { "$push": { "tasks": {id: global_id, title: task} } }, { upsert: true })
     await collection.updateOne({}, { "$set": { "global_id": global_id + 1 } }, { upsert: true })
 
-    res.send('Task added');
+    res.send({"id": global_id} );
   }
 })
 
